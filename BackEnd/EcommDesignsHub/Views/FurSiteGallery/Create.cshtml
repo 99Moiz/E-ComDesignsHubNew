@@ -1,0 +1,73 @@
+@model FursonaHub.API.Models.SiteGallery
+
+@{
+    ViewData["Title"] = "Add Showcase Photo";
+}
+
+<div class="row page-header mt-4">
+    <div class="col-12">
+        <h2 class="fw-bold section-title">Add Showcase <span style="color:var(--brand-lime)">Photo</span></h2>
+        <p class="text-secondary small">Upload an image file to display on the landing page showcase grid.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-9 col-lg-7">
+        <div class="card app-card p-4">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label class="form-label text-secondary fw-semibold">Upload Image File</label>
+                    <input type="file" name="imageFile" class="form-control" accept="image/*" required />
+                    <div class="text-muted small mt-1 fs-7">Select a high-quality product photo (JPG, PNG, WebP).</div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Caption" class="form-label text-secondary fw-semibold">Showcase Caption</label>
+                    <input asp-for="Caption" class="form-control" placeholder="e.g. Candy the Husky Hybrid Fullsuit" required />
+                    <span asp-validation-for="Caption" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AltText" class="form-label text-secondary fw-semibold">Alt Text (For screen readers / SEO)</label>
+                    <input asp-for="AltText" class="form-control" placeholder="e.g. Blue and white canine fursuit standing outdoors" required />
+                    <span asp-validation-for="AltText" class="text-danger small"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="SortOrder" class="form-label text-secondary fw-semibold">Display Sort Order</label>
+                        <input asp-for="SortOrder" type="number" class="form-control" placeholder="e.g. 0" value="0" required />
+                        <span asp-validation-for="SortOrder" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3 d-flex align-items-end">
+                        <div class="form-check form-switch card p-3 border-secondary w-100 mb-0" style="background-color: #141414; margin-left: 0;">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <label class="form-check-label text-white fw-semibold" for="IsActive">Is Active</label>
+                                </div>
+                                <input class="form-check-input" type="checkbox" asp-for="IsActive" id="IsActive" checked />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-3">
+                    <a asp-action="Index" class="btn btn-outline-light">
+                        <i class="bi bi-arrow-left"></i> Cancel
+                    </a>
+                    <button type="submit" class="btn btn-theme">
+                        <i class="bi bi-upload"></i> Upload Showcase Photo
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

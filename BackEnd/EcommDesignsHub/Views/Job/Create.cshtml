@@ -1,0 +1,57 @@
+﻿@using EcommDesignsHub.Models
+@model Job
+
+<div class="page-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+    <h2 class="section-title">Create Job</h2>
+    <a asp-action="Index" class="btn btn-outline-light">Back</a>
+</div>
+
+<div class="card app-card">
+    <div class="card-body">
+        <form asp-action="Create" method="post" class="row g-3">
+            <div class="col-12">
+                <label class="form-label">Title</label>
+                <input asp-for="Title" class="form-control" />
+            </div>
+
+            <div class="col-12">
+                <label class="form-label">Description</label>
+                <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Location</label>
+                <input asp-for="Location" class="form-control" />
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Job Type</label>
+                <select asp-for="JobType" class="form-control">
+                    <option>FullTime</option>
+                    <option>PartTime</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Experience Required (Years)</label>
+                <input asp-for="ExperienceRequired" type="number" min="0" class="form-control" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Due Date</label>
+                <input asp-for="DueDate" type="date" class="form-control" />
+            </div>
+
+            <div class="col-md-4 d-flex align-items-center">
+                <div class="form-check mt-2">
+                    <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                    <label class="form-check-label">Active</label>
+                </div>
+            </div>
+
+            <div class="col-12 d-grid mt-3">
+                <button type="submit" class="btn btn-theme">Save Job</button>
+            </div>
+        </form>
+    </div>
+</div>

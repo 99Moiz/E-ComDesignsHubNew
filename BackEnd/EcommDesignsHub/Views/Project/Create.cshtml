@@ -1,0 +1,54 @@
+﻿@using EcommDesignsHub.Models
+@model ProjectModel
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card project-card p-4 shadow-lg">
+                <h2 class="mb-4 fw-bold" style="color:var(--brand-lime)">Create Project</h2>
+                <hr class="border-secondary mb-4">
+
+                <form asp-action="Create" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label small text-uppercase fw-bold">Project Title</label>
+                            <input asp-for="Title" class="form-control" placeholder="e.g. Fashion Brand Store" />
+                            <span asp-validation-for="Title" class="text-danger small"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label small text-uppercase fw-bold">Category</label>
+                            <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control">
+                                <option value="">-- Choose --</option>
+                            </select>
+                            <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small text-uppercase fw-bold">Description</label>
+                        <textarea asp-for="Description" rows="3" class="form-control" placeholder="Describe the design work..."></textarea>
+                        <span asp-validation-for="Description" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label small text-uppercase fw-bold">Project URL</label>
+                        <input asp-for="ProjectUrl" class="form-control" placeholder="https://..." />
+                        <span asp-validation-for="ProjectUrl" class="text-danger small"></span>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label small text-uppercase fw-bold">Cover Image</label>
+                        <input type="file" name="imageFile" class="form-control" />
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                        <a asp-action="Index" class="btn btn-outline-secondary px-4 me-md-2">Back to List</a>
+                        <button type="submit" class="btn btn-theme px-5">Publish Project</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

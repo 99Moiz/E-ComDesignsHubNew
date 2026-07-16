@@ -1,0 +1,115 @@
+@model FursonaHub.API.Models.Product
+
+@{
+    ViewData["Title"] = "Add Fursona Product";
+}
+
+<div class="row page-header mt-4">
+    <div class="col-12">
+        <h2 class="fw-bold section-title">Add New <span style="color:var(--brand-lime)">Product</span></h2>
+        <p class="text-secondary small">Set up a base product. You will be able to add custom features, specifications, and extra gallery photos after saving.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-9 col-lg-8">
+        <div class="card app-card p-4">
+            <form asp-action="Create" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Title" class="form-label text-secondary fw-semibold">Product Title</label>
+                        <input asp-for="Title" class="form-control" placeholder="e.g. Wolf Fursuit Head" required />
+                        <span asp-validation-for="Title" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="Slug" class="form-label text-secondary fw-semibold">Slug (Optional)</label>
+                        <input asp-for="Slug" class="form-control" placeholder="e.g. wolf-fursuit-head" />
+                        <div class="text-muted small fs-7">If left empty, a slug will be generated automatically based on the title.</div>
+                        <span asp-validation-for="Slug" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="CategoryId" class="form-label text-secondary fw-semibold">Category</label>
+                        <select asp-for="CategoryId" class="form-select form-control" asp-items="ViewBag.CategoryId" required>
+                            <option value="">-- Choose Category --</option>
+                        </select>
+                        <span asp-validation-for="CategoryId" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="Price" class="form-label text-secondary fw-semibold">Price ($)</label>
+                        <input asp-for="Price" type="number" step="0.01" class="form-control" placeholder="0.00" required min="0" />
+                        <span asp-validation-for="Price" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label asp-for="Rating" class="form-label text-secondary fw-semibold">Rating (1-5)</label>
+                        <input asp-for="Rating" type="number" step="0.1" class="form-control" value="5.0" min="1" max="5" required />
+                        <span asp-validation-for="Rating" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ShortDesc" class="form-label text-secondary fw-semibold">Short Description</label>
+                    <textarea asp-for="ShortDesc" rows="2" class="form-control" placeholder="Summarize features in 1-2 lines..." required></textarea>
+                    <span asp-validation-for="ShortDesc" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label text-secondary fw-semibold">Full Description</label>
+                    <textarea asp-for="Description" rows="5" class="form-control" placeholder="Provide complete information about custom sizing, materials, etc..."></textarea>
+                    <span asp-validation-for="Description" class="text-danger small"></span>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 mb-3">
+                        <label class="form-label text-secondary fw-semibold">Primary Thumbnail Image</label>
+                        <input type="file" name="imageFile" class="form-control" accept="image/*" />
+                        <div class="text-muted small mt-1 fs-7">Select an image file. It will be uploaded as the product's primary picture.</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label text-secondary fw-semibold">Image Alt Text</label>
+                        <input type="text" name="altText" class="form-control" placeholder="e.g. Wolf head front view" />
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6 mb-3">
+                        <label asp-for="SortOrder" class="form-label text-secondary fw-semibold">Display Sort Order</label>
+                        <input asp-for="SortOrder" type="number" class="form-control" value="0" required />
+                        <span asp-validation-for="SortOrder" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6 mb-3 d-flex align-items-end">
+                        <div class="form-check form-switch card p-3 border-secondary w-100 mb-0" style="background-color: #141414; margin-left:0;">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    <label class="form-check-label text-white fw-semibold" for="IsActive">Is Active / Visible</label>
+                                </div>
+                                <input class="form-check-input" type="checkbox" asp-for="IsActive" id="IsActive" checked />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-outline-light">
+                        <i class="bi bi-arrow-left"></i> Cancel
+                    </a>
+                    <button type="submit" class="btn btn-theme">
+                        <i class="bi bi-save"></i> Save Product
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

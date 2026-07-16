@@ -1,0 +1,229 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\views\\furcategory\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:views\\furcategory\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\views\\project\\category.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:views\\project\\category.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\views\\furproduct\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:views\\furproduct\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\views\\furfaq\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:views\\furfaq\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\views\\project\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:views\\project\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\views\\project\\createcategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:views\\project\\createcategory.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:views\\_viewimports.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\views\\project\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:views\\project\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\views\\project\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:views\\project\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\controllers\\furproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:controllers\\furproductcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|d:\\.net_projects\\e-comdesignshubnew\\backend\\ecommdesignshub\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2F9FB4AD-1577-0E8F-5116-6212AB4A2C1C}|EcommDesignsHub.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 8,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Category.cshtml",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Project\\Category.cshtml",
+              "RelativeDocumentMoniker": "Views\\Project\\Category.cshtml",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Project\\Category.cshtml",
+              "RelativeToolTip": "Views\\Project\\Category.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T16:38:45.307Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\FurFAQ\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\FurFAQ\\Create.cshtml",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\FurFAQ\\Create.cshtml",
+              "RelativeToolTip": "Views\\FurFAQ\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T16:40:10.147Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_ViewImports.cshtml",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\_ViewImports.cshtml",
+              "RelativeDocumentMoniker": "Views\\_ViewImports.cshtml",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\_ViewImports.cshtml",
+              "RelativeToolTip": "Views\\_ViewImports.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T16:39:04.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Project\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Project\\Index.cshtml",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Project\\Index.cshtml",
+              "RelativeToolTip": "Views\\Project\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T16:38:51.821Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Project\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\Project\\Edit.cshtml",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Project\\Edit.cshtml",
+              "RelativeToolTip": "Views\\Project\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T16:38:50.737Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Createcategory.cshtml",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Project\\Createcategory.cshtml",
+              "RelativeDocumentMoniker": "Views\\Project\\Createcategory.cshtml",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Project\\Createcategory.cshtml",
+              "RelativeToolTip": "Views\\Project\\Createcategory.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T16:38:48.951Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Project\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Project\\Create.cshtml",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Project\\Create.cshtml",
+              "RelativeToolTip": "Views\\Project\\Create.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T16:38:47.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Edit.cshtml",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\FurCategory\\Edit.cshtml",
+              "RelativeDocumentMoniker": "Views\\FurCategory\\Edit.cshtml",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\FurCategory\\Edit.cshtml",
+              "RelativeToolTip": "Views\\FurCategory\\Edit.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T16:38:21.579Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\FurProduct\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\FurProduct\\Index.cshtml",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\FurProduct\\Index.cshtml",
+              "RelativeToolTip": "Views\\FurProduct\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T16:20:19.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAOQAAAAAAAAAAAAAAO0AAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-16T16:19:23.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FurProductController.cs",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Controllers\\FurProductController.cs",
+              "RelativeDocumentMoniker": "Controllers\\FurProductController.cs",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\Controllers\\FurProductController.cs",
+              "RelativeToolTip": "Controllers\\FurProductController.cs",
+              "ViewState": "AgIAABQAAAAAmZmZmZkdwBcAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-07-16T16:18:46.544Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "D:\\.Net_Projects\\E-ComDesignsHubNew\\BackEnd\\EcommDesignsHub\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-07-16T16:14:45.093Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+## Build results
+bin/
+obj/
+out/
+
+## User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Visual Studio / VS Code
+.vs/
+.vscode/
+
+## Logs
+*.log
+
+## ASP.NET Core
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+
+## OS files
+.DS_Store
+Thumbs.db
+
+## NuGet packages
+packages/
+*.nupkg
+*.snupkg
+
+## Test results
+TestResults/
+
+## Publish output
+publish/

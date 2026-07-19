@@ -1,0 +1,71 @@
+﻿@using EcommDesignsHub.Models
+@model ProjectCategory
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+
+            <div class="card project-card p-4 shadow-lg">
+
+                <h2 class="mb-4 fw-bold" style="color:var(--brand-lime)">
+                    Update Category
+                </h2>
+
+                <hr class="border-secondary mb-4" />
+
+                <form asp-action="CreateCategory" method="post">
+
+                    
+                    <input asp-for="Id" type="hidden" />
+
+                    <!-- Category Name -->
+                    <div class="mb-3">
+                        <label class="form-label small text-uppercase fw-bold">
+                            Category Name
+                        </label>
+
+                        <input asp-for="Name"
+                               class="form-control"
+                               placeholder="e.g. Web Design, Ecommerce, UI Design" />
+
+                        <span asp-validation-for="Name" class="text-danger small"></span>
+                    </div>
+
+                    <!-- Created By -->
+                    <div class="mb-3">
+                        <label class="form-label small text-uppercase fw-bold">
+                            Created By
+                        </label>
+
+                        <input asp-for="CreatedBy"
+                               class="form-control"
+                               placeholder="Enter your name" />
+                    </div>
+
+
+
+                    <!-- Buttons -->
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+
+                        <a asp-action="Category"
+                           class="btn btn-outline-secondary px-4 me-md-2">
+                            Back
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-theme px-5">
+                            Add Category
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

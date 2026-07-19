@@ -1,0 +1,84 @@
+@model IEnumerable<FursonaHub.API.Models.WhatsAppInquiry>
+
+@{
+    ViewData["Title"] = "WhatsApp Inquiries";
+}
+
+<div class="row page-header mt-4">
+    <div class="col-12">
+        <h2 class="fw-bold section-title mb-0">WhatsApp <span style="color:var(--brand-lime)">Inquiries</span></h2>
+        <p class="text-secondary small mb-0">Review conversion clicks of clients clicking the WhatsApp inquiry button on the frontend.</p>
+    </div>
+</div>
+
+<div class="card app-card mt-4 p-4">
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-hover table-modern mb-0">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 15%;">Date</th>
+                    <th scope="col" style="width: 15%;">IP Address</th>
+                    <th scope="col" style="width: 25%;">Product Context</th>
+                    <th scope="col" style="width: 35%;">Message Sent</th>
+                    <th scope="col" class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="5" class="text-center text-secondary py-4">No inquiries logged yet. When visitors click the contact button, logs will appear here.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="fw-bold text-white small">@item.CreatedAt.ToLocalTime().ToString("g")</div>
+                                <div class="text-secondary" style="font-size: 10px;">@TimeAgo(item.CreatedAt)</div>
+                            </td>
+                            <td class="text-secondary small">
+                                <code class="text-light">@item.IPAddress</code>
+                            </td>
+                            <td>
+                                @if (item.Product != null)
+                                {
+                                    <a asp-controller="FurProduct" asp-action="Details" asp-route-id="@item.ProductId" class="fw-bold text-success text-decoration-none">
+                                        <i class="bi bi-box-seam me-1"></i>@item.Product.Title
+                                    </a>
+                                    <div class="text-secondary small">Slug: @item.ProductSlug</div>
+                                }
+                                else
+                                {
+                                    <span class="text-secondary small"><i>General Inquiry (No Product Selected)</i></span>
+                                }
+                            </td>
+                            <td class="text-secondary small" style="white-space: pre-wrap;">@item.MessageSent</td>
+                            <td class="text-end">
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('Delete this inquiry log?');">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@functions {
+    public string TimeAgo(DateTime dt)
+    {
+        var ts = DateTime.UtcNow - dt;
+        if (ts.TotalDays >= 1) return $"{(int)ts.TotalDays} day(s) ago";
+        if (ts.TotalHours >= 1) return $"{(int)ts.TotalHours} hour(s) ago";
+        if (ts.TotalMinutes >= 1) return $"{(int)ts.TotalMinutes} minute(s) ago";
+        return "Just now";
+    }
+}

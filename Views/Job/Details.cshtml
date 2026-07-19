@@ -1,0 +1,30 @@
+@using EcommDesignsHub.Models
+@model Job
+
+<div class="page-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+    <h2 class="section-title">Job Details</h2>
+    <div class="btn-group">
+        <a asp-action="Index" class="btn btn-outline-light">Back</a>
+        <a asp-action="Applicants" asp-route-id="@Model.JobId" class="btn btn-outline-info">View Applicants</a>
+    </div>
+</div>
+
+<div class="card app-card">
+    <div class="card-body">
+        <h3 class="mb-2">@Model.Title</h3>
+        <span class="badge badge-info me-2">@Model.JobType</span>
+        <span class="badge badge-success me-2">@Model.Location</span>
+        <span class="badge badge-light">Experience @Model.ExperienceRequired Years</span>
+
+        <p class="mt-4">@(!string.IsNullOrWhiteSpace(Model.Description) ? Model.Description : "No description provided.")</p>
+
+        <dl class="row mt-4">
+            <dt class="col-sm-3">Posted</dt>
+            <dd class="col-sm-9">@Model.PostedDate.ToString("yyyy-MM-dd")</dd>
+            <dt class="col-sm-3">Due Date</dt>
+            <dd class="col-sm-9">@Model.DueDate.ToString("yyyy-MM-dd")</dd>
+            <dt class="col-sm-3">Status</dt>
+            <dd class="col-sm-9">@(Model.IsActive ? "Active" : "Inactive")</dd>
+        </dl>
+    </div>
+</div>

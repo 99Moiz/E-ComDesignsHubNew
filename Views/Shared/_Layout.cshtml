@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" sizes="16x16" href="~/images/faviconWeb.png">
+    <title>EcommDesignsHub - Admin Dashboard</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/EcommDesignsHub.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+
+    <style>
+        :root {
+            --navbar-height: 76px;
+            --sidebar-width: 280px;
+            --brand-lime: #8cc63f;
+        }
+
+        body {
+            background: radial-gradient(circle at top left, rgba(140, 198, 63, 0.12), transparent 28%), linear-gradient(135deg, #060606 0%, #0d0d0d 100%);
+            color: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .navbar.sticky-top {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1035;
+            background: rgba(7, 7, 7, 0.96) !important;
+            border-bottom: 1px solid rgba(140, 198, 63, 0.25);
+            backdrop-filter: blur(16px);
+        }
+
+        .sidebar-wrapper {
+            position: fixed;
+            top: var(--navbar-height);
+            left: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+            background: linear-gradient(180deg, rgba(12, 12, 12, 0.98) 0%, rgba(8, 8, 8, 0.98) 100%);
+            border-right: 1px solid rgba(255, 255, 255, 0.08);
+            overflow-y: auto;
+            z-index: 1020;
+            padding: 1.2rem;
+        }
+
+        .sidebar-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 1.15rem;
+            min-height: calc(100vh - 120px);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+        }
+
+        .sidebar-heading {
+            color: var(--brand-lime);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            margin-bottom: 0.9rem;
+            padding-bottom: 0.55rem;
+            border-bottom: 1px solid rgba(140, 198, 63, 0.25);
+        }
+
+        .sidebar-nav {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1rem 0;
+        }
+
+        .sidebar-nav-item {
+            margin-bottom: 0.35rem;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0.9rem;
+            color: #d8d8d8;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.25s ease;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+
+            .sidebar-link:hover {
+                background: rgba(140, 198, 63, 0.1);
+                color: #ffffff;
+                border-color: rgba(140, 198, 63, 0.16);
+                transform: translateX(4px);
+            }
+
+            .sidebar-link.active {
+                background: linear-gradient(90deg, var(--brand-lime), #a3e635);
+                color: #111827;
+                font-weight: 700;
+                box-shadow: 0 8px 20px rgba(140, 198, 63, 0.2);
+            }
+
+            .sidebar-link i {
+                width: 20px;
+                font-size: 1.05rem;
+            }
+
+        .sidebar-wrapper::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar-wrapper::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar-wrapper::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 999px;
+        }
+
+            .sidebar-wrapper::-webkit-scrollbar-thumb:hover {
+                background: var(--brand-lime);
+            }
+
+        .main-content-wrapper {
+            padding-top: calc(var(--navbar-height) + 1rem);
+            min-height: 100vh;
+        }
+
+        .app-shell.has-sidebar .main-content-wrapper {
+            margin-left: var(--sidebar-width);
+        }
+
+        .content-shell {
+            padding: 0.35rem 0 2rem;
+        }
+
+        .content-shell .container,
+        .content-shell .container-fluid {
+            max-width: 1400px;
+        }
+
+        .sidebar-toggle-btn {
+            display: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 0.45rem 0.65rem;
+            border-radius: 10px;
+        }
+
+        .sidebar-offcanvas {
+            background: linear-gradient(180deg, rgba(12, 12, 12, 0.98) 0%, rgba(8, 8, 8, 0.98) 100%);
+        }
+
+        @@media (max-width: 992px) {
+            .sidebar-wrapper {
+                display: none !important;
+            }
+
+            .sidebar-toggle-btn {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .main-content-wrapper {
+                margin-left: 0;
+                padding-top: calc(var(--navbar-height) + 1rem);
+            }
+        }
+    </style>
+</head>
+<body class="@(User.Identity != null && User.Identity.IsAuthenticated ? "app-shell has-sidebar" : "app-shell")">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm sticky-top">
+            <div class="container-fluid px-3 px-md-5">
+                <a class="navbar-brand d-flex align-items-center" asp-area="" asp-controller="Project" asp-action="Index">
+                    <img src="~/images/media.jfif" alt="Logo" style="height: 40px;" class="me-2">
+                    <span class="fw-bold text-white">E-com<span style="color:var(--brand-lime)">designs</span>hub</span>
+                </a>
+                <div class="d-flex align-items-center gap-2">
+                    <button class="btn sidebar-toggle-btn d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas" aria-controls="sidebarOffcanvas">
+                        <i class="bi bi-list fs-5"></i>
+                    </button>
+                    <button class="navbar-toggler btn-outline-light" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <div class="d-flex align-items-center">
+                        <partial name="_LoginPartial" />
+                        <a href="https://ecomdesignshub.com/" class="btn btn-theme ms-lg-3">Go To WebSite</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <div class="sidebar-wrapper d-none d-lg-block">
+            <div class="sidebar-card">
+                <div class="mb-4">
+                    <div class="sidebar-heading">Portfolio Hub</div>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Project" && ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")" asp-controller="Project" asp-action="Index">
+                                <i class="bi bi-folder2-open"></i> Projects
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Project" && ViewContext.RouteData.Values["action"]?.ToString() == "category" ? "active" : "")" asp-controller="Project" asp-action="category">
+                                <i class="bi bi-tags"></i> Project Categories
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Job" ? "active" : "")" asp-controller="Job" asp-action="Index">
+                                <i class="bi bi-briefcase"></i> Jobs & Applicants
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Users" ? "active" : "")" asp-controller="Users" asp-action="Index">
+                                <i class="bi bi-people"></i> Users
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <div class="sidebar-heading">Fursona Hub Admin</div>
+                    <ul class="sidebar-nav">
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurProduct" ? "active" : "")" asp-controller="FurProduct" asp-action="Index">
+                                <i class="bi bi-box-seam"></i> Products
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurCategory" ? "active" : "")" asp-controller="FurCategory" asp-action="Index">
+                                <i class="bi bi-grid-3x3-gap"></i> Categories
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurSiteGallery" ? "active" : "")" asp-controller="FurSiteGallery" asp-action="Index">
+                                <i class="bi bi-images"></i> Site Gallery
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurTestimonials" ? "active" : "")" asp-controller="FurTestimonials" asp-action="Index">
+                                <i class="bi bi-chat-quote"></i> Testimonials
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurFAQ" ? "active" : "")" asp-controller="FurFAQ" asp-action="Index">
+                                <i class="bi bi-question-circle"></i> FAQs
+                            </a>
+                        </li>
+                        <li class="sidebar-nav-item">
+                            <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurWhatsApp" ? "active" : "")" asp-controller="FurWhatsApp" asp-action="Index">
+                                <i class="bi bi-whatsapp"></i> Inquiries
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (User.Identity != null && User.Identity.IsAuthenticated)
+    {
+        <div class="offcanvas offcanvas-start sidebar-offcanvas" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
+            <div class="offcanvas-header">
+            <h5 class="offcanvas-title text-white" id="sidebarOffcanvasLabel">E-comdesignshub</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+            <div class="offcanvas-body">
+                <div class="sidebar-card">
+                    <div class="mb-4">
+                        <div class="sidebar-heading">Portfolio Hub</div>
+                        <ul class="sidebar-nav">
+                            <li class="sidebar-nav-item">
+                                <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Project" && ViewContext.RouteData.Values["action"]?.ToString() == "Index" ? "active" : "")" asp-controller="Project" asp-action="Index">
+                                    <i class="bi bi-folder2-open"></i> Projects
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-item">
+                                <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Project" && ViewContext.RouteData.Values["action"]?.ToString() == "category" ? "active" : "")" asp-controller="Project" asp-action="category">
+                                    <i class="bi bi-tags"></i> Project Categories
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-item">
+                                <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Job" ? "active" : "")" asp-controller="Job" asp-action="Index">
+                                    <i class="bi bi-briefcase"></i> Jobs & Applicants
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-item">
+                                <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Users" ? "active" : "")" asp-controller="Users" asp-action="Index">
+                                    <i class="bi bi-people"></i> Users
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="sidebar-heading">Fursona Hub Admin</div>
+                        <ul class="sidebar-nav">
+                            <li class="sidebar-nav-item">
+                                <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurProduct" ? "active" : "")" asp-controller="FurProduct" asp-action="Index">
+                                    <i class="bi bi-box-seam"></i> Products
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-item">
+                                <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurCategory" ? "active" : "")" asp-controller="FurCategory" asp-action="Index">
+                                    <i class="bi bi-grid-3x3-gap"></i> Categories
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-item">
+                                <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurSiteGallery" ? "active" : "")" asp-controller="FurSiteGallery" asp-action="Index">
+                                    <i class="bi bi-images"></i> Site Gallery
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-item">
+                                <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurTestimonials" ? "active" : "")" asp-controller="FurTestimonials" asp-action="Index">
+                                    <i class="bi bi-chat-quote"></i> Testimonials
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-item">
+                                <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurFAQ" ? "active" : "")" asp-controller="FurFAQ" asp-action="Index">
+                                    <i class="bi bi-question-circle"></i> FAQs
+                                </a>
+                            </li>
+                            <li class="sidebar-nav-item">
+                                <a class="sidebar-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "FurWhatsApp" ? "active" : "")" asp-controller="FurWhatsApp" asp-action="Index">
+                                    <i class="bi bi-whatsapp"></i> Inquiries
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="main-content-wrapper">
+        <div class="container-fluid px-3 px-md-4 px-lg-5">
+            <main role="main" class="pb-3">
+                <div class="content-shell">
+                    @RenderBody()
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @if (TempData["success"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                toastr.options = {
+                    "positionClass": "toast-bottom-right",
+                    "timeOut": "3000",
+                    "closeButton": true,
+                };
+                toastr.success("@TempData["success"]");
+            });
+        </script>
+    }
+    @if (TempData["error"] != null)
+    {
+        <script>
+            $(document).ready(function () {
+                toastr.options = {
+                    "positionClass": "toast-bottom-right",
+                    "timeOut": "3000",
+                    "closeButton": true,
+                };
+                toastr.error("@TempData["error"]");
+            });
+        </script>
+    }
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

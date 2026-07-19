@@ -1,0 +1,269 @@
+@model FursonaHub.API.Models.Product
+
+@{
+    ViewData["Title"] = Model.Title + " - Management Hub";
+}
+
+<div class="row page-header mt-4">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <div>
+            <h2 class="fw-bold section-title mb-0">Manage <span style="color:var(--brand-lime)">Product Details</span></h2>
+            <p class="text-secondary small mb-0">Product Control Center: @Model.Title</p>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-outline-light me-2">
+                <i class="bi bi-pencil-square"></i> Edit Basic Info
+            </a>
+            <a asp-action="Index" class="btn btn-outline-secondary text-light">
+                <i class="bi bi-arrow-left"></i> Back to Products
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <!-- Left Column: Core Info & Specs -->
+    <div class="col-lg-5 mb-4">
+        <!-- Core Info -->
+        <div class="card app-card p-4 mb-4">
+            <h4 class="fw-bold text-white border-bottom border-secondary pb-2 mb-3"><i class="bi bi-info-circle text-success me-2"></i>Product Overview</h4>
+            <div class="row text-secondary mb-2 fs-6">
+                <div class="col-4 fw-semibold text-white">Title:</div>
+                <div class="col-8">@Model.Title</div>
+            </div>
+            <div class="row text-secondary mb-2 fs-6">
+                <div class="col-4 fw-semibold text-white">Slug:</div>
+                <div class="col-8"><code class="text-warning">@Model.Slug</code></div>
+            </div>
+            <div class="row text-secondary mb-2 fs-6">
+                <div class="col-4 fw-semibold text-white">Category:</div>
+                <div class="col-8"><span class="badge bg-dark border border-secondary">@Model.Category?.Name</span></div>
+            </div>
+            <div class="row text-secondary mb-2 fs-6">
+                <div class="col-4 fw-semibold text-white">Price:</div>
+                <div class="col-8 fw-bold text-success">$@Model.Price.ToString("N2")</div>
+            </div>
+            <div class="row text-secondary mb-2 fs-6">
+                <div class="col-4 fw-semibold text-white">Rating:</div>
+                <div class="col-8 text-warning"><i class="bi bi-star-fill me-1"></i>@Model.Rating.ToString("F1")</div>
+            </div>
+            <div class="row text-secondary mb-3 fs-6">
+                <div class="col-4 fw-semibold text-white">Status:</div>
+                <div class="col-8">
+                    @if (Model.IsActive)
+                    {
+                        <span class="badge badge-success">Active / Visible</span>
+                    }
+                    else
+                    {
+                        <span class="badge badge-secondary">Hidden</span>
+                    }
+                </div>
+            </div>
+            <div class="mb-2">
+                <div class="fw-bold text-white small mb-1">Short Description:</div>
+                <blockquote class="bg-dark p-2 border-start border-3 border-success text-secondary rounded small">
+                    @Model.ShortDesc
+                </blockquote>
+            </div>
+            <div>
+                <div class="fw-bold text-white small mb-1">Full Description:</div>
+                <div class="bg-dark p-2 text-secondary rounded small" style="white-space: pre-line; max-height:180px; overflow-y:auto;">
+                    @Model.Description
+                </div>
+            </div>
+        </div>
+
+        <!-- Specifications CRUD Section -->
+        <div class="card app-card p-4">
+            <h4 class="fw-bold text-white border-bottom border-secondary pb-2 mb-3"><i class="bi bi-wrench-adjustable text-success me-2"></i>Product Specifications</h4>
+            
+            <div class="table-responsive mb-4" style="max-height: 250px; overflow-y: auto;">
+                <table class="table table-dark table-sm table-modern align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>Label</th>
+                            <th>Value</th>
+                            <th class="text-end">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (!Model.Specs.Any())
+                        {
+                            <tr>
+                                <td colspan="3" class="text-center text-secondary py-3 small">No specifications added yet. Add one below.</td>
+                            </tr>
+                        }
+                        else
+                        {
+                            foreach (var spec in Model.Specs.OrderBy(s => s.SortOrder))
+                            {
+                                <tr>
+                                    <td class="fw-bold text-white">@spec.Label</td>
+                                    <td class="text-secondary small">@spec.Value</td>
+                                    <td class="text-end">
+                                        <form asp-action="DeleteSpec" method="post" class="d-inline">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@spec.Id" />
+                                            <input type="hidden" name="productId" value="@Model.Id" />
+                                            <button type="submit" class="btn btn-sm btn-outline-danger border-0"><i class="bi bi-trash-fill"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Add Spec Form -->
+            <form asp-action="AddSpec" method="post" class="card p-3 border-secondary" style="background-color: #121212;">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <h6 class="fw-semibold text-white mb-2 fs-6">Add New Specification</h6>
+                <div class="row g-2 mb-2">
+                    <div class="col-md-6">
+                        <input type="text" name="label" class="form-control form-control-sm" placeholder="Label, e.g. Height" required />
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="value" class="form-control form-control-sm" placeholder="Value, e.g. 45 cm" required />
+                    </div>
+                </div>
+                <div class="row g-2 align-items-center">
+                    <div class="col-6">
+                        <input type="number" name="sortOrder" class="form-control form-control-sm" placeholder="Sort order" value="0" />
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="submit" class="btn btn-sm btn-theme w-100"><i class="bi bi-plus-lg"></i> Add Spec</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Right Column: Gallery & Features -->
+    <div class="col-lg-7 mb-4">
+        <!-- Gallery Section -->
+        <div class="card app-card p-4 mb-4">
+            <h4 class="fw-bold text-white border-bottom border-secondary pb-2 mb-3"><i class="bi bi-images text-success me-2"></i>Product Gallery</h4>
+            
+            <!-- Gallery Grid -->
+            <div class="row g-2 mb-4" style="max-height: 300px; overflow-y: auto; padding-right: 5px;">
+                @if (!Model.Gallery.Any())
+                {
+                    <div class="col-12 text-center text-secondary py-4 small">No gallery images uploaded yet. Upload one below.</div>
+                }
+                else
+                {
+                    foreach (var img in Model.Gallery.OrderBy(g => g.SortOrder))
+                    {
+                        <div class="col-sm-4 col-md-3">
+                            <div class="card bg-dark border-secondary h-100 p-1 position-relative" style="min-height: 120px;">
+                                <img src="@img.ImageUrl" alt="@img.AltText" class="card-img-top rounded" style="height: 80px; object-fit: cover;" />
+                                @if (img.IsPrimary)
+                                {
+                                    <span class="badge bg-success text-dark position-absolute top-0 start-0 m-1" style="font-size: 8px;">Primary</span>
+                                }
+                                <div class="d-flex justify-content-between align-items-center mt-2 px-1">
+                                    <div class="small fs-8 text-secondary">#@img.SortOrder</div>
+                                    <div class="d-flex">
+                                        @if (!img.IsPrimary)
+                                        {
+                                            <form asp-action="SetPrimaryImage" method="post" class="d-inline me-1">
+                                                @Html.AntiForgeryToken()
+                                                <input type="hidden" name="id" value="@img.Id" />
+                                                <input type="hidden" name="productId" value="@Model.Id" />
+                                                <button type="submit" class="btn btn-xs btn-outline-success p-1 border-0" title="Set Primary"><i class="bi bi-star"></i></button>
+                                            </form>
+                                        }
+                                        <form asp-action="DeleteGalleryImage" method="post" class="d-inline" onsubmit="return confirm('Delete this image?');">
+                                            @Html.AntiForgeryToken()
+                                            <input type="hidden" name="id" value="@img.Id" />
+                                            <input type="hidden" name="productId" value="@Model.Id" />
+                                            <button type="submit" class="btn btn-xs btn-outline-danger p-1 border-0" title="Delete"><i class="bi bi-trash-fill"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+            <!-- Upload Gallery Image Form -->
+            <form asp-action="AddGalleryImage" method="post" enctype="multipart/form-data" class="card p-3 border-secondary" style="background-color: #121212;">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <h6 class="fw-semibold text-white mb-2 fs-6">Upload New Photo</h6>
+                <div class="row g-2 mb-2">
+                    <div class="col-md-7">
+                        <input type="file" name="imageFile" class="form-control form-control-sm" accept="image/*" required />
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" name="altText" class="form-control form-control-sm" placeholder="Alt text (SEO description)" />
+                    </div>
+                </div>
+                <div class="row g-2 align-items-center">
+                    <div class="col-md-4 form-check form-switch ms-3">
+                        <input class="form-check-input" type="checkbox" name="isPrimary" id="isPrimaryCheck" value="true" />
+                        <label class="form-check-label text-secondary small" for="isPrimaryCheck">Primary Image</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="number" name="sortOrder" class="form-control form-control-sm" placeholder="Sort order" value="0" />
+                    </div>
+                    <div class="col-md-3 ms-auto text-end">
+                        <button type="submit" class="btn btn-sm btn-theme w-100"><i class="bi bi-upload"></i> Upload</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Features CRUD Section -->
+        <div class="card app-card p-4">
+            <h4 class="fw-bold text-white border-bottom border-secondary pb-2 mb-3"><i class="bi bi-list-stars text-success me-2"></i>Product Features (Bullet Points)</h4>
+            
+            <div class="list-group list-group-flush mb-4" style="max-height: 250px; overflow-y: auto;">
+                @if (!Model.Features.Any())
+                {
+                    <div class="text-center text-secondary py-3 small">No bullet points added yet. Add one below.</div>
+                }
+                else
+                {
+                    foreach (var feat in Model.Features.OrderBy(f => f.SortOrder))
+                    {
+                        <div class="list-group-item bg-dark border-secondary d-flex justify-content-between align-items-center py-2">
+                            <div class="d-flex align-items-center">
+                                <span class="badge bg-secondary me-2">#@feat.SortOrder</span>
+                                <span class="text-light small">@feat.FeatureText</span>
+                            </div>
+                            <form asp-action="DeleteFeature" method="post" class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="id" value="@feat.Id" />
+                                <input type="hidden" name="productId" value="@Model.Id" />
+                                <button type="submit" class="btn btn-sm btn-outline-danger border-0"><i class="bi bi-trash-fill"></i></button>
+                            </form>
+                        </div>
+                    }
+                }
+            </div>
+
+            <!-- Add Feature Form -->
+            <form asp-action="AddFeature" method="post" class="card p-3 border-secondary" style="background-color: #121212;">
+                @Html.AntiForgeryToken()
+                <input type="hidden" name="productId" value="@Model.Id" />
+                <h6 class="fw-semibold text-white mb-2 fs-6">Add New Bullet Point Feature</h6>
+                <div class="mb-2">
+                    <input type="text" name="featureText" class="form-control form-control-sm" placeholder="e.g. Fully foam sculptured with hollow ventilation" required />
+                </div>
+                <div class="row g-2 align-items-center">
+                    <div class="col-6">
+                        <input type="number" name="sortOrder" class="form-control form-control-sm" placeholder="Sort order" value="0" />
+                    </div>
+                    <div class="col-6 text-end">
+                        <button type="submit" class="btn btn-sm btn-theme w-100"><i class="bi bi-plus-lg"></i> Add Feature</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

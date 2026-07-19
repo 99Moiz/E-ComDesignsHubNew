@@ -1,0 +1,97 @@
+@model IEnumerable<FursonaHub.API.Models.Testimonial>
+
+@{
+    ViewData["Title"] = "Fursona Testimonials";
+}
+
+<div class="row page-header mt-4">
+    <div class="col-12 d-flex justify-content-between align-items-center">
+        <div>
+            <h2 class="fw-bold section-title mb-0">Client <span style="color:var(--brand-lime)">Testimonials</span></h2>
+            <p class="text-secondary small mb-0">Manage reviews and ratings shared by commission clients on the front-end.</p>
+        </div>
+        <a asp-action="Create" class="btn btn-theme">
+            <i class="bi bi-plus-lg"></i> Add Testimonial
+        </a>
+    </div>
+</div>
+
+<div class="card app-card mt-4 p-4">
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-hover table-modern mb-0">
+            <thead>
+                <tr>
+                    <th scope="col" style="width: 80px;">Client</th>
+                    <th scope="col">Location / product</th>
+                    <th scope="col">Rating</th>
+                    <th scope="col" style="width: 35%;">Review Text</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-secondary py-4">No testimonials found. Click "Add Testimonial" to get started.</td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="@item.AvatarUrl" alt="@item.ClientName" class="rounded-circle border border-secondary me-2" style="width: 45px; height: 45px; object-fit: cover;" />
+                                    <div class="fw-bold text-white fs-6">@item.ClientName</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-white small">@item.Location</div>
+                                <div class="text-secondary" style="font-size: 11px;">Ref: @(string.IsNullOrEmpty(item.ProductRef) ? "N/A" : item.ProductRef)</div>
+                            </td>
+                            <td>
+                                @for (int i = 0; i < 5; i++)
+                                {
+                                    if (i < item.Rating)
+                                    {
+                                        <i class="bi bi-star-fill text-warning" style="font-size: 11px;"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="bi bi-star text-secondary" style="font-size: 11px;"></i>
+                                    }
+                                }
+                            </td>
+                            <td class="text-secondary small" style="max-height: 80px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 300px;">
+                                @item.ReviewText
+                            </td>
+                            <td>
+                                @if (item.IsActive)
+                                {
+                                    <span class="badge badge-success">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-secondary">Hidden</span>
+                                }
+                            </td>
+                            <td class="text-end">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-light me-2">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <form asp-action="Delete" asp-route-id="@item.Id" method="post" class="d-inline" onsubmit="return confirm('Delete this testimonial?');">
+                                    @Html.AntiForgeryToken()
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="bi bi-trash"></i> Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+@model FursonaHub.API.Models.Category
+
+@{
+    ViewData["Title"] = "Add Fursona Category";
+}
+
+<div class="row page-header mt-4">
+    <div class="col-12">
+        <h2 class="fw-bold section-title">Add New <span style="color:var(--brand-lime)">Category</span></h2>
+        <p class="text-secondary small">Set up a new product category for category filtering on the frontend.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 col-lg-6">
+        <div class="card app-card p-4">
+            <form asp-action="Create" method="post">
+                @Html.AntiForgeryToken()
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label text-secondary fw-semibold">Category Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="e.g. Full Fursuit" required autocomplete="off" />
+                    <span asp-validation-for="Name" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="SortOrder" class="form-label text-secondary fw-semibold">Sort Order</label>
+                    <input asp-for="SortOrder" type="number" class="form-control" placeholder="Lower order displays first" required min="0" value="0" />
+                    <span asp-validation-for="SortOrder" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4 form-check form-switch card p-3 border-secondary" style="background-color: #141414; margin-left: 0;">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <div>
+                            <label class="form-check-label text-white fw-semibold" for="IsActive">Is Active</label>
+                            <div class="text-secondary small">Inactive categories won't show in the dropdown options or filters.</div>
+                        </div>
+                        <input class="form-check-input" type="checkbox" asp-for="IsActive" id="IsActive" checked />
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-action="Index" class="btn btn-outline-light">
+                        <i class="bi bi-arrow-left"></i> Back to List
+                    </a>
+                    <button type="submit" class="btn btn-theme">
+                        <i class="bi bi-save"></i> Save Category
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
